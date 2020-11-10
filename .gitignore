@@ -1,2 +1,4 @@
 data-main
 .ipynb_checkpoints
+.env
+node_modules
