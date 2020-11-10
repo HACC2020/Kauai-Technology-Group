@@ -1,5 +1,16 @@
 version: '3'
 services:
+  nginx_proxy:
+    restart: always
+    image: staticfloat/nginx-certbot
+    ports:
+        - 80:80/tcp
+        - 443:443/tcp
+    environment:
+        CERTBOT_EMAIL: jamesthesken@gmail.com
+    volumes:
+      - ./conf.d:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
   postgres:
     image: postgres:latest
     environment:
@@ -18,13 +29,12 @@ services:
     volumes:
       - /app/node_modules
       - ./heatmap:/app
+#    expose:
+#      - "3000"
     ports:
       - '3000:3000'
     restart: on-failure
     container_name: react-app
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    stdin_open: true
   express-api:
     build:
       context: ./server
@@ -42,3 +52,5 @@ services:
       - PGDATABASE=${PGDATABASE}
       - PGPASSWORD=${PGPASSWORD}
       - PGPORT=${PGPORT}
+volumes:
+  letsencrypt:
