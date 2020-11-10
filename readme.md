@@ -3,6 +3,8 @@ Visualizing room occupancy on the UH Manoa campus through the use of unique WiFi
 
 ## Demo
 
+![Demo gif](./output.gif)
+
 ## Architecture/Discussion
 
 ## Running the web-app
