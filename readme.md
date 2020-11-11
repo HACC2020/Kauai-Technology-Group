@@ -9,9 +9,12 @@ Visualizing room occupancy on the UH Manoa campus through the use of unique WiFi
 
 **Note to judges and onlookers:** The largest remaining bug fix is the appearance of the app, which will be fixed now until the presentation.
 
-## Architecture/Discussion
+## Overview
+
+![Overview](./hacc-overview.jpg)
 
 ## Running the web-app
+
 
 ### Docker Configurations
 
