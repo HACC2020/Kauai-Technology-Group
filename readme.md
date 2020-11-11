@@ -67,11 +67,37 @@ The terminal will provide a URL to access through your browser.
 ---
 
 ## FAQ
-* Why React?
-
 * Why the full blown SQL database?
+The first prototype included the full provided dataset in the compiled application (~60 MB in JSON format!). This was really slow, and not a good idea. Postgres made it convenient to develop an API to query data based on timestamp, building, and device ID, without having the user download *all* the data.
 
-* Why use MapBox, as opposed to another platform like Google Maps or Leaflet?
+* Why use Mapbox, as opposed to another platform like Google Maps or Leaflet?
+Mapbox has a great hosting service for vector-tiles, which greatly improves the performance of web maps. See [the Mapbox docs for more info.](https://docs.mapbox.com/vector-tiles/reference/) Originally, the dataset was converted to GeoJSON, i.e.:
+```
+# json_format = {
+#     "features": [
+#         {
+#             "type": "Feature",
+#             "properties":
+#                 {
+#                     "device_id": "Wainani F 502",
+#                     "Building": "Wainani",
+#                     "Max Clients": 2.0,
+#                     "Unique Clients": 2.0,
+#                     "date": "2020-0824",
+#                     "startTime": "1200pm",
+#                     "endTime": "259pm"
+#                 },
+#             "geometry":
+#                 {
+#                     "type": "Point",
+#                     "coordinates": [-157.81458181493875, 21.292468917945786] 
+#                 }
+#         }
+#     ]
+# }
+
+```
+As mentioned, this file was convenient to work with, but too large for production. Many examples from Mapbox work with [smaller datasets](https://visgl.github.io/react-map-gl/examples/heatmap), so GeoJSON is acceptable. 
 
 * Are there any interesting characteristics shown in the data?
-
+The slider on the web-application makes it easy to see that the Warrior Rec Center holds most of the campus occupancy throughout the day. As expected, early morning and night shifts to the dorms. Hoping to work on a graphical approach to display the time-series data before the presentation.
